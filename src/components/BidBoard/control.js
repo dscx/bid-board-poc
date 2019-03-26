@@ -23,12 +23,13 @@ class Control extends React.Component {
         style={{
           margin: `1rem`,
           maxWidth: 175,
-          backgroundColor: "rebeccapurple",
           padding: "1rem",
         }}
       >
-        <div>{value}</div>
-        <div>{title}</div>
+        <div style={{ backgroundColor: "lightgrey", textAlign: "center" }}>
+          {value}
+        </div>
+        <div style={{ textAlign: "center" }}>{title}</div>
         <div>
           <Slider
             min={min}

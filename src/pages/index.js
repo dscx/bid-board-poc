@@ -27,7 +27,7 @@ class IndexPage extends React.Component {
     } = this.state
 
     return (
-      (totalEstimators * hoursSpent * missedBids * averageBidValue) / hitRate
+      formatMoney((totalEstimators * hoursSpent * missedBids * averageBidValue) * hitRate)
     )
   }
 
@@ -53,11 +53,6 @@ class IndexPage extends React.Component {
         >
           <Controls
             onUpdate={this.onUpdate}
-            /**
-             * this is causing the entire index page to re-render, along with all its children.
-             * how should we pass this data to summary then?
-             * we couod move summary into the controls thing and try it
-             */
           />
           <Summary
             totalEstimators={totalEstimators}
@@ -70,6 +65,39 @@ class IndexPage extends React.Component {
         </div>
       </Layout>
     )
+  }
+}
+
+const formatMoney = (
+  amount,
+  decimalCount = 2,
+  decimal = ".",
+  thousands = ","
+) => {
+  try {
+    decimalCount = Math.abs(decimalCount)
+    decimalCount = isNaN(decimalCount) ? 2 : decimalCount
+
+    const negativeSign = amount < 0 ? "-" : ""
+
+    let i = parseInt(
+      (amount = Math.abs(Number(amount) || 0).toFixed(decimalCount))
+    ).toString()
+    let j = i.length > 3 ? i.length % 3 : 0
+
+    return (
+      negativeSign +
+      (j ? i.substr(0, j) + thousands : "") +
+      i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) +
+      (decimalCount
+        ? decimal +
+          Math.abs(amount - i)
+            .toFixed(decimalCount)
+            .slice(2)
+        : "")
+    )
+  } catch (e) {
+    console.log(e)
   }
 }
 
