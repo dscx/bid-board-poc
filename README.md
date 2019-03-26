@@ -2,7 +2,7 @@
   ROI Calculator based on Building Connected "Bid Board Pro"
   * Note formulas not accurate. Proof of concept *
 
-![](http://www.giphy.com/gifs/2sk6pzpnmA7ZNkOvEU)
+![](bba.gif)
 
 ## Setup
 
