@@ -25,7 +25,7 @@ const Summary = ({
       </div>
       <div style={{ margin: "1rem" }}>
         <p style={{ fontSize: 22 }}>Missed bids</p>
-        <p>{`If you don't miss that ${missedBids} bid, with your ${hitRate} hit rate, you could earn an additionl ${hitRatedGrowth}.`}</p>
+        <p>{`If you don't miss that ${missedBids} bid, with your ${hitRate} hit rate, you could earn an additionl $${hitRatedGrowth}.`}</p>
       </div>
     </div>
     <p style={{ fontSize: 42 }}>{`$${potentialGrowth}`}</p>

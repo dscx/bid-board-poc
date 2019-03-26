@@ -26,9 +26,15 @@ class IndexPage extends React.Component {
       hitRate,
     } = this.state
 
-    return (
-      formatMoney((totalEstimators * hoursSpent * missedBids * averageBidValue) * hitRate)
+    return formatMoney(
+      totalEstimators * hoursSpent * missedBids * averageBidValue * hitRate
     )
+  }
+
+  getHitRatedGrowth = () => {
+    const { missedBids, hitRate } = this.state
+
+    return formatMoney((missedBids * hitRate) * 10)
   }
 
   render() {
@@ -51,9 +57,7 @@ class IndexPage extends React.Component {
             boxShadow: "-2px 2px 10px 5px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <Controls
-            onUpdate={this.onUpdate}
-          />
+          <Controls onUpdate={this.onUpdate} />
           <Summary
             totalEstimators={totalEstimators}
             hoursSpent={hoursSpent}
@@ -61,6 +65,7 @@ class IndexPage extends React.Component {
             averageBidValue={averageBidValue}
             hitRate={hitRate}
             potentialGrowth={this.getPotentialGrowth()}
+            hitRatedGrowth={this.getHitRatedGrowth()}
           />
         </div>
       </Layout>
